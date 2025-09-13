@@ -147,4 +147,7 @@
   <data name="MaxLength" xml:space="preserve">
     <value>يجب أن يكون الطول 10</value>
   </data>
+  <data name="DepartmentIdIsNotexist" xml:space="preserve">
+    <value>رقم القسم غير موجود</value>
+  </data>
 </root>

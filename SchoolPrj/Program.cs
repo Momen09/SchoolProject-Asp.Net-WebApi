@@ -26,7 +26,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 
 builder.Services.AddInfrastructureDependencies()
     .AddServiceDependencies()
-    .AddCoreDependencies();
+    .AddCoreDependencies()
+    .AddServiceRegisteration();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddLocalization(
@@ -46,7 +47,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedUICultures = supportedCultures;
 });
 
-var CORS= "_cors";
+var CORS = "_cors";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: CORS,

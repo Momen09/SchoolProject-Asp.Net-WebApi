@@ -12,6 +12,7 @@
         public const string Name = "Name";
         public const string IsExist = "IsExist";
         public const string MaxLength = "MaxLength";
+        public const string DepartmentIdIsNotexist = "DepartmentIdIsNotexist";
 
     }
 }

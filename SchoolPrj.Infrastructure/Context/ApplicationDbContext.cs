@@ -1,12 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SchoolPrj.Data.Entites;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using SchoolPrj.Data.Entites.Identity;
 using SchoolProject.Data.Entites;
 using System.Reflection;
-using System.Reflection.Emit;
 
 namespace SchoolProject.Infrastructure.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
+        <User,
+        IdentityRole<int>, int,
+        IdentityUserClaim<int>,
+        IdentityUserRole<int>,
+        IdentityUserLogin<int>,
+        IdentityRoleClaim<int>,
+        IdentityUserToken<int>>
     {
         public ApplicationDbContext()
         {
@@ -15,6 +23,7 @@ namespace SchoolProject.Infrastructure.Data
         {
         }
 
+        public DbSet<User> User { get; set; }
         public DbSet<Student> students { get; set; }
         public DbSet<Department> departments { get; set; }
         public DbSet<Subjects> subjects { get; set; }
@@ -25,7 +34,7 @@ namespace SchoolProject.Infrastructure.Data
         {
             //modelBuilder.HasDefaultSchema("School");
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());    
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
