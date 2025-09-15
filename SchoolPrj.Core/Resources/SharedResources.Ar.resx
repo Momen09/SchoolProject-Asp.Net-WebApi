@@ -150,4 +150,16 @@
   <data name="DepartmentIdIsNotexist" xml:space="preserve">
     <value>رقم القسم غير موجود</value>
   </data>
+  <data name="PasswordNotEqualConfirmPassword" xml:space="preserve">
+    <value>كلمة المرور غير مطابقة لتأكيد كلمة المرور</value>
+  </data>
+  <data name="EmailIsExist" xml:space="preserve">
+    <value>البريد الإلكتروني موجود بالفعل.</value>
+  </data>
+  <data name="UsernameIsExist" xml:space="preserve">
+    <value>اسم المستخدم موجود بالفعل.</value>
+  </data>
+  <data name="FailedToAddUser" xml:space="preserve">
+    <value>فشل في إضافة المستخدم.</value>
+  </data>
 </root>

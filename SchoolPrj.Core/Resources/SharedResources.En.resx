@@ -150,4 +150,16 @@
   <data name="DepartmentIdIsNotexist" xml:space="preserve">
     <value>Department Id Is Not Exist</value>
   </data>
+  <data name="PasswordNotEqualConfirmPassword" xml:space="preserve">
+    <value>The password does not match the confirm password.</value>
+  </data>
+  <data name="EmailIsExist" xml:space="preserve">
+    <value>The email already exists.</value>
+  </data>
+  <data name="UsernameIsExist" xml:space="preserve">
+    <value>The username already exists.</value>
+  </data>
+  <data name="FailedToAddUser" xml:space="preserve">
+    <value>Failed to add user.</value>
+  </data>
 </root>

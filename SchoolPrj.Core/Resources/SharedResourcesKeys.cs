@@ -13,6 +13,10 @@
         public const string IsExist = "IsExist";
         public const string MaxLength = "MaxLength";
         public const string DepartmentIdIsNotexist = "DepartmentIdIsNotexist";
+        public const string PasswordNotEqualConfirmPassword = "PasswordNotEqualConfirmPassword";
+        public const string EmailIsExist = "EmailIsExist";
+        public const string UsernameIsExist = "UsernameIsExist";
+        public const string FailedToAddUser = "FailedToAddUser";
 
     }
 }

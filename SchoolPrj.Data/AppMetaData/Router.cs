@@ -29,5 +29,16 @@
             public const string delete= prefix + "/{id}";
             public const string paginatedList = prefix + "/PaginatedList";
         }
+
+        public class User
+        {
+            public const string controller = "User";
+            public const string prefix = baseUrl + controller;
+            public const string create = prefix + "/Create";
+            public const string edit = prefix + "/Edit";
+            public const string delete= prefix + "/{id}";
+            public const string paginatedList = prefix + "/PaginatedList";
+            public const string getById = prefix + "/{id}";
+        }
     }
 }
