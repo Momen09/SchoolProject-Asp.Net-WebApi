@@ -162,4 +162,7 @@
   <data name="FailedToAddUser" xml:space="preserve">
     <value>فشل في إضافة المستخدم.</value>
   </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>تم تغيير كلمة المرور بنجاح.</value>
+  </data>
 </root>

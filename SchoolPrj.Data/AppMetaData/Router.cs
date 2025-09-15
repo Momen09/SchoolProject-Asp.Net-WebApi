@@ -40,6 +40,7 @@
             public const string paginatedList = prefix + "/PaginatedList";
             public const string getById = prefix + "/{id}";
             public const string update = prefix + "/Update";
+            public const string changePassword = prefix + "/ChangePassword";
         }
     }
 }
