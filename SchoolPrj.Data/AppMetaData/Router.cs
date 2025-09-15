@@ -39,6 +39,7 @@
             public const string delete= prefix + "/{id}";
             public const string paginatedList = prefix + "/PaginatedList";
             public const string getById = prefix + "/{id}";
+            public const string update = prefix + "/Update";
         }
     }
 }
