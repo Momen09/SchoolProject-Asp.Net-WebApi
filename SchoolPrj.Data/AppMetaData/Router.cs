@@ -37,6 +37,8 @@
             public const string create = prefix + "/Create";
             public const string edit = prefix + "/Edit";
             public const string delete= prefix + "/{id}";
+            public const string paginatedList = prefix + "/PaginatedList";
+            public const string getById = prefix + "/{id}";
         }
     }
 }

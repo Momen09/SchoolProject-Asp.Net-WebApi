@@ -17,11 +17,7 @@
     <Folder Include="Features\Depatment\Commands\Models\" />
     <Folder Include="Features\Depatment\Commands\Results\" />
     <Folder Include="Features\Students\Queries\Validators\" />
-    <Folder Include="Features\ApplicationUser\Queries\Handler\" />
-    <Folder Include="Features\ApplicationUser\Queries\Models\" />
-    <Folder Include="Features\ApplicationUser\Queries\" />
     <Folder Include="Mapping\DepartmentMapping\CommandMapping\" />
-    <Folder Include="Mapping\UserMapping\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

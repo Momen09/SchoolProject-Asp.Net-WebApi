@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolPrj.Api.Base;
 using SchoolPrj.Core.Features.ApplicationUser.Command.Models;
+using SchoolPrj.Core.Features.ApplicationUser.Queries.Handler;
+using SchoolPrj.Core.Features.ApplicationUser.Queries.Models;
+using SchoolPrj.Core.Features.Students.Queries.Models;
 using SchoolPrj.Data.AppMetaData;
 
 namespace SchoolPrj.Api.Controllers
@@ -14,6 +17,18 @@ namespace SchoolPrj.Api.Controllers
         public async Task<IActionResult> Create([FromBody] AddUserCommand command)
         {
             var result = await Mediator.Send(command);
+            return NewResult(result);
+        }
+        [HttpGet(Router.User.paginatedList)]
+        public async Task<IActionResult> PaginatedList([FromQuery] GetUserPaginationListQuery query)
+        {
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+        [HttpGet(Router.User.getById)]
+        public async Task<IActionResult> GetStudentsByIdAsync([FromRoute] int id)
+        {
+            var result = await Mediator.Send(new GetUserByIdQuery(id));
             return NewResult(result);
         }
     }

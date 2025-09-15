@@ -9,6 +9,8 @@ namespace SchoolPrj.Core.Mapping.UserMapping
         public ApplicationUserProfile()
         {
             AddUserCommandMapping();
+            GetUserPaginationMapping();
+            GetUserByIdMapping();
         }
     }
 }
