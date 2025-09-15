@@ -1,10 +1,6 @@
 ﻿using MediatR;
 using SchoolPrj.Core.Bases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SchoolPrj.Core.Features.ApplicationUser.Command.Models
 {

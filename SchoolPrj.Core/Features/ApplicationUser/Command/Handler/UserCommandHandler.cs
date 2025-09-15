@@ -13,6 +13,7 @@ namespace SchoolPrj.Core.Features.ApplicationUser.Command.Handler
     public class UserCommandHandler : ResponseHandler
         , IRequestHandler<AddUserCommand, Response<string>>
         , IRequestHandler<UpdateUserCommand, Response<string>>
+        , IRequestHandler<DeleteUserCommand, Response<string>>
 
     {
         private readonly IStringLocalizer<SharedResources> _stringLocalizer;
@@ -50,6 +51,15 @@ namespace SchoolPrj.Core.Features.ApplicationUser.Command.Handler
             var updateUser = await _userManager.UpdateAsync(userMap);
             if (!updateUser.Succeeded) return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.Updated]);
             return Updated("");
+        }
+
+        public async Task<Response<string>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        {
+            var user =await _userManager.FindByIdAsync(request.Id.ToString());
+            if (user == null) return NotFound<string>("");
+            var deleteUser = await _userManager.DeleteAsync(user);
+            if (!deleteUser.Succeeded) return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.Deleted]);
+            return Deleted<string>(_stringLocalizer[SharedResourcesKeys.Deleted]);
         }
     }
 }
