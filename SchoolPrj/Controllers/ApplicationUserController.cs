@@ -4,6 +4,7 @@ using SchoolPrj.Api.Base;
 using SchoolPrj.Core.Features.ApplicationUser.Command.Models;
 using SchoolPrj.Core.Features.ApplicationUser.Queries.Handler;
 using SchoolPrj.Core.Features.ApplicationUser.Queries.Models;
+using SchoolPrj.Core.Features.Students.Commands.Models;
 using SchoolPrj.Core.Features.Students.Queries.Models;
 using SchoolPrj.Data.AppMetaData;
 
@@ -29,6 +30,12 @@ namespace SchoolPrj.Api.Controllers
         public async Task<IActionResult> GetStudentsByIdAsync([FromRoute] int id)
         {
             var result = await Mediator.Send(new GetUserByIdQuery(id));
+            return NewResult(result);
+        }
+        [HttpPut(Router.User.update)]
+        public async Task<IActionResult> Edit([FromBody] UpdateUserCommand command)
+        {
+            var result = await Mediator.Send(command);
             return NewResult(result);
         }
     }

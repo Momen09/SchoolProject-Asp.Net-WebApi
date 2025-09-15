@@ -11,6 +11,7 @@ namespace SchoolPrj.Core.Mapping.UserMapping
             AddUserCommandMapping();
             GetUserPaginationMapping();
             GetUserByIdMapping();
+            UpdateUserCommandMapping();
         }
     }
 }

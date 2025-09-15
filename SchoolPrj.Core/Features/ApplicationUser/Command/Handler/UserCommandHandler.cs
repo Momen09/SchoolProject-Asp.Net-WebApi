@@ -6,16 +6,13 @@ using SchoolPrj.Core.Bases;
 using SchoolPrj.Core.Features.ApplicationUser.Command.Models;
 using SchoolPrj.Core.Resources;
 using SchoolPrj.Data.Entites.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SchoolPrj.Core.Features.ApplicationUser.Command.Handler
 {
     public class UserCommandHandler : ResponseHandler
         , IRequestHandler<AddUserCommand, Response<string>>
+        , IRequestHandler<UpdateUserCommand, Response<string>>
 
     {
         private readonly IStringLocalizer<SharedResources> _stringLocalizer;
@@ -43,6 +40,16 @@ namespace SchoolPrj.Core.Features.ApplicationUser.Command.Handler
             var createUser =await _userManager.CreateAsync(mapperUser,request.Password);
             if (!createUser.Succeeded) return BadRequest<string>(createUser.Errors.FirstOrDefault().Description);
             return Created("");
+        }
+
+        public async Task<Response<string>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        {
+            var oldUser = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (oldUser == null) return NotFound<string>("");
+            var userMap = _mapper.Map(request,oldUser);
+            var updateUser = await _userManager.UpdateAsync(userMap);
+            if (!updateUser.Succeeded) return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.Updated]);
+            return Updated("");
         }
     }
 }
