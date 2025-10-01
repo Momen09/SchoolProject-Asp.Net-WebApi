@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Authentication\Queries\Handlers\" />
+    <Folder Include="Features\Authentication\Queries\Models\" />
+    <Folder Include="Features\Authentication\Queries\Results\" />
+    <Folder Include="Features\Authentication\Commands\Results\" />
     <Folder Include="Features\Depatment\Commands\Handlers\" />
     <Folder Include="Features\Depatment\Commands\Models\" />
     <Folder Include="Features\Depatment\Commands\Results\" />

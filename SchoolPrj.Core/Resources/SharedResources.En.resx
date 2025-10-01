@@ -165,4 +165,10 @@
   <data name="PasswordChanged" xml:space="preserve">
     <value>Password changed successfully.</value>
   </data>
+  <data name="UsernameIsNotExist" xml:space="preserve">
+    <value>Username does not exist.</value>
+  </data>
+  <data name="PasswordNotCorrect" xml:space="preserve">
+    <value>Password is not correct.</value>
+  </data>
 </root>

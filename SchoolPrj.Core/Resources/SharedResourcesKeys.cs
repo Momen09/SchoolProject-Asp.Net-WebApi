@@ -18,6 +18,8 @@
         public const string UsernameIsExist = "UsernameIsExist";
         public const string FailedToAddUser = "FailedToAddUser";
         public const string PasswordChanged = "PasswordChanged";
+        public const string UsernameIsNotExist = "UsernameIsNotExist";
+        public const string PasswordNotCorrect = "PasswordNotCorrect";
 
     }
 }

@@ -42,5 +42,12 @@
             public const string update = prefix + "/Update";
             public const string changePassword = prefix + "/ChangePassword";
         }
+        public class Auth
+        {
+            public const string controller = "Authentication";
+            public const string prefix = baseUrl + controller;
+            public const string register = prefix + "/Register";
+            public const string signIn = prefix + "/SignIn";
+        }
     }
 }
