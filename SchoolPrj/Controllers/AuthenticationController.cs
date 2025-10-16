@@ -31,7 +31,7 @@ namespace SchoolPrj.Api.Controllers
             return NewResult(result);
         }
         [HttpGet(Router.Auth.ConfirmEmail)]
-        public async Task<IActionResult> ConfirmEmail([FromForm] ConfirmEmailQuery query)
+        public async Task<IActionResult> ConfirmEmail([FromQuery] ConfirmEmailQuery query)
         {
             var result = await Mediator.Send(query);
             return NewResult(result);

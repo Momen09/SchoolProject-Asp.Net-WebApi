@@ -65,9 +65,10 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 builder.Services.AddTransient<IUrlHelper>(x
-    =>{
-        var factory = x.GetRequiredService<IUrlHelperFactory>();
-        var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
+    =>
+{
+    var factory = x.GetRequiredService<IUrlHelperFactory>();
+    var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
     return factory.GetUrlHelper(actionContext);
 });
 
@@ -93,7 +94,7 @@ app.UseHttpsRedirection();
 
 app.UseCors(CORS);
 
-app.UseAuthentication(); 
+app.UseAuthentication();
 
 app.UseAuthorization();
 
