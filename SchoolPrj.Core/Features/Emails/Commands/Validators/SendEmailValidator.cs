@@ -22,13 +22,11 @@ namespace SchoolPrj.Core.Features.Emails.Commands.Validators
         {
             RuleFor(x => x.Email)
                 .NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKeys.NotEmpty])
-                .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Required])
-                .MaximumLength(10).WithMessage(_stringLocalizer[SharedResourcesKeys.MaxLength]);
+                .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Required]);
 
             RuleFor(x => x.Message)
                .NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKeys.NotEmpty])
-               .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Required])
-               .MaximumLength(10).WithMessage(_stringLocalizer[SharedResourcesKeys.MaxLength]);
+               .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Required]);
         }
     }
 }

@@ -180,4 +180,7 @@
   <data name="EmailNotConfirmed" xml:space="preserve">
     <value>Email Not Confirmed</value>
   </data>
+  <data name="SendEmailFailed" xml:space="preserve">
+    <value>Send Email Failed</value>
+  </data>
 </root>

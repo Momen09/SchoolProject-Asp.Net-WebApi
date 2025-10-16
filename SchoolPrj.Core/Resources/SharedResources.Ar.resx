@@ -180,4 +180,7 @@
   <data name="EmailNotConfirmed" xml:space="preserve">
     <value>البريد الإلكتروني غير مؤكد</value>
   </data>
+  <data name="SendEmailFailed" xml:space="preserve">
+    <value>فشل إرسال البريد</value>
+  </data>
 </root>

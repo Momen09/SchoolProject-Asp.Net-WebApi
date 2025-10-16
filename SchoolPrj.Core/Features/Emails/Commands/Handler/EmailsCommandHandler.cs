@@ -16,17 +16,25 @@ namespace SchoolPrj.Core.Features.Emails.Commands.Handler
     {
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<SharedResources> _stringLocalizer;
+        private readonly IEmailService _emailService;
         public EmailsCommandHandler(
             IMapper mapper, 
+            IEmailService emailService,
             IStringLocalizer<SharedResources> stringLocalizer) 
             : base(stringLocalizer)
         {
+            _emailService = emailService;
             _mapper = mapper;
             _stringLocalizer = stringLocalizer;
         }
-        public Task<Response<string>> Handle(SendEmailCommand request, CancellationToken cancellationToken)
+        public async Task<Response<string>> Handle(SendEmailCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var response =await _emailService.SendEmail(request.Email, request.Message);
+            if (response == "Success")
+            {
+                return Success("");
+            }
+            return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.SendEmailFailed]);
         }
     }
 }

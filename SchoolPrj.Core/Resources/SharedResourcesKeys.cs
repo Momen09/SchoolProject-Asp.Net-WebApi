@@ -23,6 +23,7 @@
         public const string Email = "Email";
         public const string Message = "Message";
         public const string EmailNotConfirmed = "EmailNotConfirmed";
+        public const string SendEmailFailed = "SendEmailFailed";
 
     }
 }
