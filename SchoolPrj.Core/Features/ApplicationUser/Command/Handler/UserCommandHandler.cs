@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
@@ -21,13 +22,16 @@ namespace SchoolPrj.Core.Features.ApplicationUser.Command.Handler
         private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserCommandHandler(
             IStringLocalizer<SharedResources> stringLocalizer
             ,IMapper mapper
             , UserManager<User> userManager
+            , IHttpContextAccessor httpContextAccessor
             ) :base(stringLocalizer)
         {
+            _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
             _stringLocalizer = stringLocalizer;
             _mapper = mapper;
@@ -42,6 +46,10 @@ namespace SchoolPrj.Core.Features.ApplicationUser.Command.Handler
             var mapperUser = _mapper.Map<User>(request);
             var createUser =await _userManager.CreateAsync(mapperUser,request.Password);
             if (!createUser.Succeeded) return BadRequest<string>(createUser.Errors.FirstOrDefault().Description);
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(mapperUser);
+            var requestAccessor = _httpContextAccessor.HttpContext.Request;
+            var returnUrl = requestAccessor.Scheme + "://" + requestAccessor.Host + "/" + "api/Account/Authentication/ConfirmEmail" + "?userId=" + mapperUser.Id + "&code=" + code;
+            var confirmEmail = await _userManager.ConfirmEmailAsync(mapperUser, code);
             return Created("");
         }
 

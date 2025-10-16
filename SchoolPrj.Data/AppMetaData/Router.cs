@@ -48,6 +48,8 @@
             public const string prefix = baseUrl + controller;
             public const string register = prefix + "/Register";
             public const string signIn = prefix + "/SignIn";
+            public const string RefreshToken = prefix + "/RefreshToken";
+            public const string ValidateToken = prefix + "/ValidateToken";
         }
     }
 }

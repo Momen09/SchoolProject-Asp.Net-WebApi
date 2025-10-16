@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using SchoolPrj.Core.Bases;
@@ -43,14 +42,17 @@ namespace SchoolPrj.Core.Features.Authentication.Commands.Handlers
             var user = await _userManager.FindByNameAsync(request.UserName);
             if (user == null) return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKeys.UsernameIsNotExist]);
             var signInResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+            //confrim email
+            if(!user.EmailConfirmed) return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKeys.EmailNotConfirmed]);
             if (!signInResult.Succeeded) return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKeys.PasswordNotCorrect]);
             var result = await _authenticationService.GetJWTTokenAsync(user);
             return Success(result);
         }
 
-        public Task<Response<JwtAuthResult>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        public async Task<Response<JwtAuthResult>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result =await _authenticationService.GetRefreshToken(request.AccessToken, request.RefreshToken);
+            return Success(result);
         }
     }
 }

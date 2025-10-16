@@ -20,6 +20,9 @@
         public const string PasswordChanged = "PasswordChanged";
         public const string UsernameIsNotExist = "UsernameIsNotExist";
         public const string PasswordNotCorrect = "PasswordNotCorrect";
+        public const string Email = "Email";
+        public const string Message = "Message";
+        public const string EmailNotConfirmed = "EmailNotConfirmed";
 
     }
 }
