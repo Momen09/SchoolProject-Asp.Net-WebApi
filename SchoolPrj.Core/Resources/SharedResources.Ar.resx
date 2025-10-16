@@ -135,9 +135,6 @@
   <data name="Success" xml:space="preserve">
     <value>تمت الإضافة بنجاح</value>
   </data>
-  <data name="NotEmpty" xml:space="preserve">
-    <value>يجب ألا يكون فارغًا</value>
-  </data>
   <data name="Name" xml:space="preserve">
     <value>الاسم</value>
   </data>
@@ -182,5 +179,20 @@
   </data>
   <data name="SendEmailFailed" xml:space="preserve">
     <value>فشل إرسال البريد</value>
+  </data>
+  <data name="PleaseConfirmYourEmail" xml:space="preserve">
+    <value>الرجاء تأكيد بريدك الإلكتروني</value>
+  </data>
+  <data name="NotEmpty" xml:space="preserve">
+    <value>يجب ألا يكون فارغًا</value>
+  </data>
+  <data name="TryToRegisterAgain" xml:space="preserve">
+    <value>حاول التسجيل مرة أخرى</value>
+  </data>
+  <data name="ErrorWhenConfirmEmail" xml:space="preserve">
+    <value>خطأ عند تأكيد البريد الإلكتروني</value>
+  </data>
+  <data name="ConfirmEmailIsDone" xml:space="preserve">
+    <value>تأكيد البريد الإلكتروني تم</value>
   </data>
 </root>

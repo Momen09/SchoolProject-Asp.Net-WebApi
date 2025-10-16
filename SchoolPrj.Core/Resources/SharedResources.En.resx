@@ -135,9 +135,6 @@
   <data name="Success" xml:space="preserve">
     <value>Added Successfully </value>
   </data>
-  <data name="NotEmpty" xml:space="preserve">
-    <value>Must Not Be Empty</value>
-  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -182,5 +179,20 @@
   </data>
   <data name="SendEmailFailed" xml:space="preserve">
     <value>Send Email Failed</value>
+  </data>
+  <data name="PleaseConfirmYourEmail" xml:space="preserve">
+    <value>Please Confirm Your Email</value>
+  </data>
+  <data name="NotEmpty" xml:space="preserve">
+    <value>Must Not Be Empty</value>
+  </data>
+  <data name="TryToRegisterAgain" xml:space="preserve">
+    <value>Try To Register Again</value>
+  </data>
+  <data name="ErrorWhenConfirmEmail" xml:space="preserve">
+    <value>Error When Confirm Email</value>
+  </data>
+  <data name="ConfirmEmailIsDone" xml:space="preserve">
+    <value>Confirm Email Is Done</value>
   </data>
 </root>

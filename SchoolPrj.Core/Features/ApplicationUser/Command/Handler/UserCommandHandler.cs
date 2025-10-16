@@ -8,6 +8,7 @@ using SchoolPrj.Core.Bases;
 using SchoolPrj.Core.Features.ApplicationUser.Command.Models;
 using SchoolPrj.Core.Resources;
 using SchoolPrj.Data.Entites.Identity;
+using SchoolPrj.Service.Abstracts;
 
 
 namespace SchoolPrj.Core.Features.ApplicationUser.Command.Handler
@@ -23,14 +24,20 @@ namespace SchoolPrj.Core.Features.ApplicationUser.Command.Handler
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IEmailService _emailService;
+        private readonly IApplicationUserService _applicationUserService;
 
         public UserCommandHandler(
             IStringLocalizer<SharedResources> stringLocalizer
             ,IMapper mapper
+            , IApplicationUserService applicationUserService
+            , IEmailService emailService
             , UserManager<User> userManager
             , IHttpContextAccessor httpContextAccessor
             ) :base(stringLocalizer)
         {
+            _applicationUserService = applicationUserService;
+            _emailService = emailService;
             _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
             _stringLocalizer = stringLocalizer;
@@ -38,19 +45,27 @@ namespace SchoolPrj.Core.Features.ApplicationUser.Command.Handler
         }
         public async Task<Response<string>> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByEmailAsync(request.Email);
-            if (user != null) return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.EmailIsExist]);
 
-            var userByUsername = await _userManager.FindByNameAsync(request.UserName);
-            if (userByUsername != null) return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.UsernameIsExist]);
             var mapperUser = _mapper.Map<User>(request);
-            var createUser =await _userManager.CreateAsync(mapperUser,request.Password);
-            if (!createUser.Succeeded) return BadRequest<string>(createUser.Errors.FirstOrDefault().Description);
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(mapperUser);
-            var requestAccessor = _httpContextAccessor.HttpContext.Request;
-            var returnUrl = requestAccessor.Scheme + "://" + requestAccessor.Host + "/" + "api/Account/Authentication/ConfirmEmail" + "?userId=" + mapperUser.Id + "&code=" + code;
-            var confirmEmail = await _userManager.ConfirmEmailAsync(mapperUser, code);
-            return Created("");
+            var createUser =await _applicationUserService.AddUserAsync(mapperUser,request.Password);
+            switch(createUser)
+            {
+                case "Created":
+                    return Created<string>(_stringLocalizer[SharedResourcesKeys.Created]);
+                case "EmailIsExist":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.EmailIsExist]);
+                case "UsernameIsExist":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.UsernameIsExist]);
+                case "SendEmailFailed":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.SendEmailFailed]);
+                    case "ErrorInCreateUser":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.FailedToAddUser]);
+                    case "Failed":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.TryToRegisterAgain]);
+                    case "Success":
+                    return Created<string>(_stringLocalizer[SharedResourcesKeys.Created]);
+                    default: return BadRequest<string>(createUser);
+            }
         }
 
         public async Task<Response<string>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)

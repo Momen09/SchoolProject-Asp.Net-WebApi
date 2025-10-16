@@ -24,10 +24,16 @@ namespace SchoolPrj.Api.Controllers
             var result = await Mediator.Send(command);
             return NewResult(result);
         }
-        [HttpPost(Router.Auth.ValidateToken)]
-        public async Task<IActionResult> ValidateToken([FromForm] AuthorizeUserQuery command)
+        [HttpGet(Router.Auth.ValidateToken)]
+        public async Task<IActionResult> ValidateToken([FromForm] AuthorizeUserQuery query)
         {
-            var result = await Mediator.Send(command);
+            var result = await Mediator.Send(query);
+            return NewResult(result);
+        }
+        [HttpGet(Router.Auth.ConfirmEmail)]
+        public async Task<IActionResult> ConfirmEmail([FromForm] ConfirmEmailQuery query)
+        {
+            var result = await Mediator.Send(query);
             return NewResult(result);
         }
     }

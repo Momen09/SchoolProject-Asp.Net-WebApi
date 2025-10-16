@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SchoolPrj.Core;
@@ -59,6 +62,14 @@ builder.Services.AddCors(options =>
                       });
 });
 
+
+builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+builder.Services.AddTransient<IUrlHelper>(x
+    =>{
+        var factory = x.GetRequiredService<IUrlHelperFactory>();
+        var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
+    return factory.GetUrlHelper(actionContext);
+});
 
 
 var app = builder.Build();

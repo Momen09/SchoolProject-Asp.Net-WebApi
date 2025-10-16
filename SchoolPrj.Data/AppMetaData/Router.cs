@@ -50,6 +50,7 @@
             public const string signIn = prefix + "/SignIn";
             public const string RefreshToken = prefix + "/RefreshToken";
             public const string ValidateToken = prefix + "/ValidateToken";
+            public const string ConfirmEmail = "/Api/Authentication/ConfirmEmail";
         }
         public class EmailsRoute
         {

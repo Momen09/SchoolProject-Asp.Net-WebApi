@@ -43,7 +43,8 @@ namespace SchoolPrj.Core.Features.Authentication.Commands.Handlers
             if (user == null) return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKeys.UsernameIsNotExist]);
             var signInResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
             //confrim email
-            if(!user.EmailConfirmed) return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKeys.EmailNotConfirmed]);
+            if (!user.EmailConfirmed) return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKeys.PleaseConfirmYourEmail]);
+            if (!user.EmailConfirmed) return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKeys.EmailNotConfirmed]);
             if (!signInResult.Succeeded) return BadRequest<JwtAuthResult>(_stringLocalizer[SharedResourcesKeys.PasswordNotCorrect]);
             var result = await _authenticationService.GetJWTTokenAsync(user);
             return Success(result);
