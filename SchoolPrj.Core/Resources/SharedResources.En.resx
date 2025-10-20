@@ -195,4 +195,13 @@
   <data name="ConfirmEmailIsDone" xml:space="preserve">
     <value>Confirm Email Is Done</value>
   </data>
+  <data name="UserIsNotFound" xml:space="preserve">
+    <value>User Is Not Found</value>
+  </data>
+  <data name="TryAgainAnotherTime" xml:space="preserve">
+    <value>Try Again Another Time</value>
+  </data>
+  <data name="InvalidCode" xml:space="preserve">
+    <value>Invalid Code</value>
+  </data>
 </root>

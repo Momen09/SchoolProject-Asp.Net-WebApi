@@ -14,7 +14,9 @@ namespace SchoolPrj.Core.Features.Authentication.Commands.Handlers
 {
     public class AuthenticationCommandHandler : ResponseHandler,
         IRequestHandler<SignInCommand, Response<JwtAuthResult>>,
-        IRequestHandler<RefreshTokenCommand, Response<JwtAuthResult>>
+        IRequestHandler<RefreshTokenCommand, Response<JwtAuthResult>>,
+        IRequestHandler<SendResetPasswordCommand, Response<string>>,
+        IRequestHandler<ResetPasswordCommand, Response<string>>
     {
         private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         private readonly IMapper _mapper;
@@ -54,6 +56,40 @@ namespace SchoolPrj.Core.Features.Authentication.Commands.Handlers
         {
             var result =await _authenticationService.GetRefreshToken(request.AccessToken, request.RefreshToken);
             return Success(result);
+        }
+
+        public async Task<Response<string>> Handle(SendResetPasswordCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _authenticationService.SendResetPasswordCode(request.Email);
+            switch(result)
+            {
+                case "User Not Found":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.UserIsNotFound]);
+                case "Failed":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.TryAgainAnotherTime]);
+                case "Error In Update User":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.TryAgainAnotherTime]);
+                case "Success":
+                    return Created<string>(_stringLocalizer[SharedResourcesKeys.Success]);
+                default: return BadRequest<string>(result);
+
+            }
+        }
+
+        public async Task<Response<string>> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _authenticationService.ResetPassword(request.Password, request.Email);
+            switch (result)
+            {
+                case "User Not Found":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.UserIsNotFound]);
+                case "Failed":
+                    return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.InvalidCode]);
+                case "Success":
+                    return Created<string>(_stringLocalizer[SharedResourcesKeys.Success]);
+                default: return BadRequest<string>(result);
+
+            }
         }
     }
 }

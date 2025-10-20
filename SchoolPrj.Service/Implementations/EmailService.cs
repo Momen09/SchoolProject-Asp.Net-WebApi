@@ -8,12 +8,11 @@ namespace SchoolPrj.Service.Implementations
     public class EmailService : IEmailService
     {
         private readonly EmailSettings _emailSettings;
-        private readonly string reason;
         public EmailService(EmailSettings emailSettings)
         {
             _emailSettings = emailSettings;
         }
-        public async Task<string> SendEmail(string Email, string Message)
+        public async Task<string> SendEmail(string Email, string Message, string reason)
         {
             try
             {

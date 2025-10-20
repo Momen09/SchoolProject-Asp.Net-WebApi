@@ -51,6 +51,9 @@
             public const string RefreshToken = prefix + "/RefreshToken";
             public const string ValidateToken = prefix + "/ValidateToken";
             public const string ConfirmEmail = baseUrl + "Authentication/ConfirmEmail";
+            public const string SendResetPassword = prefix + "/SendResetPassword";
+            public const string ConfirmResetPassword = prefix + "/ConfirmResetPassword";
+            public const string ResetPassword = prefix + "/ResetPassword";
         }
         public class EmailsRoute
         {

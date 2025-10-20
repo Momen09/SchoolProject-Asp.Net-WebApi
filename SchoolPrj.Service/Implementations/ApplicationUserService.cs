@@ -44,8 +44,9 @@ namespace SchoolPrj.Service.Implementations
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var requestAccessor = _httpContextAccessor.HttpContext.Request;
                 var returnUrl = requestAccessor.Scheme + "://" + requestAccessor.Host +_urlHelper.Action("ConfirmEmail", "Authentication",new {userId=user.Id,code =code}) ;
-                    //"/" + "api/Account/Authentication/ConfirmEmail" + "?userId=" + user.Id + "&code=" + code;
-                await _emailService.SendEmail(user.Email, returnUrl);
+                var message = $"To Confirm Email CLick Link: <a href='{returnUrl}'></a>";
+                //"/" + "api/Account/Authentication/ConfirmEmail" + "?userId=" + user.Id + "&code=" + code;
+                await _emailService.SendEmail(user.Email, returnUrl, "Confirm Email");
                 await trans.CommitAsync();
                 return "Success";
             }

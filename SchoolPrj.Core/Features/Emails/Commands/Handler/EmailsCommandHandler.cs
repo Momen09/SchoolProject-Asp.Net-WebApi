@@ -29,7 +29,7 @@ namespace SchoolPrj.Core.Features.Emails.Commands.Handler
         }
         public async Task<Response<string>> Handle(SendEmailCommand request, CancellationToken cancellationToken)
         {
-            var response =await _emailService.SendEmail(request.Email, request.Message);
+            var response =await _emailService.SendEmail(request.Email, request.Message,null);
             if (response == "Success")
             {
                 return Success("");

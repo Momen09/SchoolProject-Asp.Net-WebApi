@@ -28,6 +28,9 @@
         public const string TryToRegisterAgain = "TryToRegisterAgain";
         public const string ErrorWhenConfirmEmail = "ErrorWhenConfirmEmail";
         public const string ConfirmEmailIsDone = "ConfirmEmailIsDone";
+        public const string UserIsNotFound = "UserIsNotFound";
+        public const string TryAgainAnotherTime = "TryAgainAnotherTime";
+        public const string InvalidCode = "InvalidCode";
 
     }
 }

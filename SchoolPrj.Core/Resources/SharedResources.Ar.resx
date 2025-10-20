@@ -195,4 +195,13 @@
   <data name="ConfirmEmailIsDone" xml:space="preserve">
     <value>تأكيد البريد الإلكتروني تم</value>
   </data>
+  <data name="UserIsNotFound" xml:space="preserve">
+    <value>المستخدم غير موجود</value>
+  </data>
+  <data name="TryAgainAnotherTime" xml:space="preserve">
+    <value>حاول مرة أخرى في وقت لاحق</value>
+  </data>
+  <data name="InvalidCode" xml:space="preserve">
+    <value>رمز غير صالح</value>
+  </data>
 </root>

@@ -8,6 +8,6 @@ namespace SchoolPrj.Service.Abstracts
 {
     public interface IEmailService
     {
-        public Task<string> SendEmail(string Email, string Message);
+        public Task<string> SendEmail(string Email, string Message,string? reason);
     }
 }
